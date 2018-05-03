@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Yourdestiny</string>
+
+    <string name="confirm">확인</string>
+    <string name="input_hint">이름</string>
+    <string name="intro">당신은\n타노스에게...</string>
+    <string name="your_name">당신의 이름은\n무엇입니까</string>
+
 </resources>
