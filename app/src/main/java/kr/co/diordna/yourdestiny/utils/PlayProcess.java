@@ -1,4 +1,4 @@
-package kr.co.diordna.yourdestiny;
+package kr.co.diordna.yourdestiny.utils;
 
 import android.content.Context;
 import android.os.Handler;
@@ -7,6 +7,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import kr.co.diordna.yourdestiny.MainActivity;
+import kr.co.diordna.yourdestiny.ProcessFinishCallback;
+import kr.co.diordna.yourdestiny.R;
 
 /**
  * Created by ryans on 2018-05-03.
@@ -62,7 +66,6 @@ public class PlayProcess {
 
     public static void two(Context c, TextView tv_center, EditText et_name, View fl_confirm) {
         Animation fadeIn = AnimationUtils.loadAnimation(c.getApplicationContext(), R.anim.fade_in);
-        Animation fadeOut = AnimationUtils.loadAnimation(c.getApplicationContext(), R.anim.fade_out);
 
         tv_center.startAnimation(fadeIn);
         et_name.startAnimation(fadeIn);
@@ -72,6 +75,7 @@ public class PlayProcess {
     public static void three(Context c, final TextView tv_center, final EditText et_name, final View fl_confirm, final View lottie, final ProcessFinishCallback processFinishCallback) {
         final Animation fadeIn = AnimationUtils.loadAnimation(c.getApplicationContext(), R.anim.fade_in);
         Animation fadeOut = AnimationUtils.loadAnimation(c.getApplicationContext(), R.anim.fade_out);
+        final Animation lottieFadeOut = AnimationUtils.loadAnimation(c.getApplicationContext(), R.anim.fade_out);
 
         tv_center.startAnimation(fadeOut);
         et_name.startAnimation(fadeOut);
@@ -95,10 +99,52 @@ public class PlayProcess {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        processFinishCallback.onFinish();
-                        lottie.setVisibility(View.GONE);
+                        lottie.startAnimation(lottieFadeOut);
                     }
-                }, 5000);
+                }, 3000);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        lottieFadeOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                lottie.setVisibility(View.GONE);
+                processFinishCallback.onFinish();
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+    }
+
+    public static void four(MainActivity c, TextView tv_center, final ProcessFinishCallback processFinishCallback) {
+        Animation fadeIn = AnimationUtils.loadAnimation(c.getApplicationContext(), R.anim.fade_in);
+
+        tv_center.startAnimation(fadeIn);
+        tv_center.setVisibility(View.VISIBLE);
+
+        fadeIn.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                processFinishCallback.onFinish();
             }
 
             @Override
