@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Your Destiny for TANOS - Avengers infinity war</string>
+    <string name="app_name">Your Destiny for Thanos</string>
 
     <string name="confirm">Confirm</string>
     <string name="input_hint">Name</string>
-    <string name="intro">Your Destiny\nfor TANOS...</string>
+    <string name="intro">Your Destiny\nfor Thanos...</string>
     <string name="your_name">What is your name?</string>
     <string name="your_name_error">Please input name</string>
 
-    <string name="end_destiny_die1">I feel sorry..\n%1$s, You were killed by TANOS</string>
-    <string name="end_destiny_die2">I feel sorry..\n%1$s, You became dust when TANOS bounced his fingers.</string>
-    <string name="end_destiny_die3">I feel sorry..\n%1$s, You disappeared to TANOS to balance the universe.</string>
-    <string name="end_destiny_live1">Celebration!\n%1$s, You survived when TANOS bounced his fingers.</string>
-    <string name="end_destiny_live2">Celebration!\n%1$s, You are a survivor from TANOS.</string>
-    <string name="end_destiny_live3">Celebration!\n%1$s, You survived TANOS.</string>
+    <string name="end_destiny_die1">I feel sorry..\n%1$s, You were killed by Thanos</string>
+    <string name="end_destiny_die2">I feel sorry..\n%1$s, You became dust when Thanos bounced his fingers.</string>
+    <string name="end_destiny_die3">I feel sorry..\n%1$s, You disappeared to Thanos to balance the universe.</string>
+    <string name="end_destiny_live1">Celebration!\n%1$s, You survived when Thanos bounced his fingers.</string>
+    <string name="end_destiny_live2">Celebration!\n%1$s, You are a survivor from Thanos.</string>
+    <string name="end_destiny_live3">Celebration!\n%1$s, You survived Thanos.</string>
 
-    <string name="share_destiny_die1">%1$s was killed by TANOS.\n\nAre you curious about your results?\nGoogle Store link: http://bit.ly/2whXO09</string>
-    <string name="share_destiny_die2">%1$s became dust when TANOS bounced his fingers.\n\nAre you curious about your results?\nGoogle Store link : http://bit.ly/2whXO09</string>
-    <string name="share_destiny_die3">%1$s disappeared to TANOS to balance the universe.\n\nAre you curious about your results?\nGoogle Store link : http://bit.ly/2whXO09</string>
-    <string name="share_destiny_live1">%1$s had TANOS bounced his fingers but survived.\n\nAre you curious about your results?\nGoogle Store link : http://bit.ly/2whXO09</string>
-    <string name="share_destiny_live2">%1$s is survivor from TANOS.\n\nAre you curious about your results?\nGoogle Store link : http://bit.ly/2whXO09</string>
-    <string name="share_destiny_live3">%1$s is survived TANOS.\n\nAre you curious about your results?\nGoogle Store link : http://bit.ly/2whXO09</string>
+    <string name="share_destiny_die1">%1$s was killed by Thanos.\n\nAre you curious about your results?\nGoogle Store link: http://bit.ly/2whXO09</string>
+    <string name="share_destiny_die2">%1$s became dust when Thanos bounced his fingers.\n\nAre you curious about your results?\nGoogle Store link : http://bit.ly/2whXO09</string>
+    <string name="share_destiny_die3">%1$s disappeared to Thanos to balance the universe.\n\nAre you curious about your results?\nGoogle Store link : http://bit.ly/2whXO09</string>
+    <string name="share_destiny_live1">%1$s had Thanos bounced his fingers but survived.\n\nAre you curious about your results?\nGoogle Store link : http://bit.ly/2whXO09</string>
+    <string name="share_destiny_live2">%1$s is survivor from Thanos.\n\nAre you curious about your results?\nGoogle Store link : http://bit.ly/2whXO09</string>
+    <string name="share_destiny_live3">%1$s is survived Thanos.\n\nAre you curious about your results?\nGoogle Store link : http://bit.ly/2whXO09</string>
 
     <string name="share_title">Share..</string>
     <string name="share_btn">Go Share</string>
