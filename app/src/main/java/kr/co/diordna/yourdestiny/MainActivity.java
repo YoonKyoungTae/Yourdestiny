@@ -1,6 +1,8 @@
 package kr.co.diordna.yourdestiny;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -16,6 +18,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import kr.co.diordna.simplesharedpreferences.SSP;
 import kr.co.diordna.yourdestiny.utils.DestinyMaker;
@@ -26,6 +29,7 @@ import kr.co.diordna.yourdestiny.utils.PrefKeys;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private View li_end_btns;
+    private View li_antman_btn;
     private View li_replay_btn;
     private View li_share_btn;
     private View li_rate_btn;
@@ -38,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String mUserName;
     private int mShareIndex = -1;
 
+    private InterstitialAd mInterstitialStartAd;
+    private InterstitialAd mInterstitialButtonAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initView();
         initAdmob();
-        play(0);
     }
 
     private void initView() {
@@ -54,10 +60,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fl_confirm = findViewById(R.id.fl_confirm);
         animation_view = findViewById(R.id.animation_view);
         li_end_btns = findViewById(R.id.li_end_btns);
+        li_antman_btn = findViewById(R.id.li_antman_btn);
         li_replay_btn = findViewById(R.id.li_replay_btn);
         li_share_btn = findViewById(R.id.li_share_btn);
         li_rate_btn = findViewById(R.id.li_rate_btn);
 
+        li_antman_btn.setOnClickListener(this);
         li_replay_btn.setOnClickListener(this);
         li_share_btn.setOnClickListener(this);
         li_rate_btn.setOnClickListener(this);
@@ -119,8 +127,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     SSP.openEdit().put(PrefKeys.FIRST_USER, false).apply();
                 } else {
                     // 광고
-                    if (mInterstitialAd.isLoaded()) {
-                        mInterstitialAd.show();
+                    if (mInterstitialButtonAd.isLoaded()) {
+                        mInterstitialButtonAd.show();
                     } else {
                         play(2);
                     }
@@ -158,14 +166,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private InterstitialAd mInterstitialAd;
-
     private void initAdmob() {
 
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-5942895690703066/2624686853");
-//        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialStartAd = new InterstitialAd(this);
+        mInterstitialStartAd.setAdUnitId("ca-app-pub-5942895690703066/5623573996");
+//        mInterstitialStartAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialStartAd.loadAd(new AdRequest.Builder().build());
+
+        mInterstitialButtonAd = new InterstitialAd(this);
+        mInterstitialButtonAd.setAdUnitId("ca-app-pub-5942895690703066/2624686853");
+//        mInterstitialButtonAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialButtonAd.loadAd(new AdRequest.Builder().build());
 
         AdView adView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -209,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        mInterstitialAd.setAdListener(new AdListener() {
+        mInterstitialButtonAd.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
@@ -234,9 +245,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onAdClosed() {
                 // Code to be executed when when the interstitial ad is closed.
                 play(2);
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                mInterstitialButtonAd.loadAd(new AdRequest.Builder().build());
             }
         });
+
+        mInterstitialStartAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                mInterstitialStartAd.show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                play(0);
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                play(0);
+            }
+        });
+
     }
 
     private void hideKeyboard() {
@@ -247,14 +279,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.li_antman_btn:
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.app.mingming.antman"));
+                startActivity(intent);
+                FirebaseAnalytics.getInstance(this).logEvent("click_antman", new Bundle());
+                break;
             case R.id.li_replay_btn:
                 play(0);
+                FirebaseAnalytics.getInstance(this).logEvent("click_replay", new Bundle());
                 break;
             case R.id.li_share_btn:
                 EtcUtil.shareToApp(MainActivity.this, mUserName, mShareIndex);
+                FirebaseAnalytics.getInstance(this).logEvent("click_share", new Bundle());
                 break;
             case R.id.li_rate_btn:
                 EtcUtil.goToReview(MainActivity.this);
+                FirebaseAnalytics.getInstance(this).logEvent("click_rate", new Bundle());
                 break;
         }
     }

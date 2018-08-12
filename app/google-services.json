@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "107408143140",
+    "firebase_url": "https://tanos-e86bb.firebaseio.com",
+    "project_id": "tanos-e86bb",
+    "storage_bucket": "tanos-e86bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107408143140:android:79d1abc3154ac141",
+        "android_client_info": {
+          "package_name": "kr.co.diordna.yourdestiny"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "107408143140-k358gtvbqlssciqjakohlku0i578ed38.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT3oxvIKN93yaS72KATPON9cFsOoca6ZY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -23,6 +23,7 @@
 
     <string name="share_title">Share..</string>
     <string name="share_btn">Go Share</string>
+    <string name="antman_btn">Play antman</string>
     <string name="replay_btn">Go Replay</string>
     <string name="rate_btn">Go Review</string>
 
